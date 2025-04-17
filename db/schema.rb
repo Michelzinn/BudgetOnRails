@@ -10,7 +10,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_15_192731) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_15_202628) do
+  create_table "budget_allocations", force: :cascade do |t|
+    t.integer "budget_id", null: false
+    t.integer "category_id", null: false
+    t.decimal "amount_allocated"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["budget_id"], name: "index_budget_allocations_on_budget_id"
+    t.index ["category_id"], name: "index_budget_allocations_on_category_id"
+  end
+
+  create_table "budgets", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "total_amount"
+    t.date "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_budgets_on_user_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "budget_id", null: false
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["budget_id"], name: "index_categories_on_budget_id"
+    t.index ["user_id"], name: "index_categories_on_user_id"
+  end
+
+  create_table "expenses", force: :cascade do |t|
+    t.integer "budget_id", null: false
+    t.integer "category_id", null: false
+    t.integer "user_id", null: false
+    t.decimal "amount"
+    t.string "description"
+    t.datetime "spent_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["budget_id"], name: "index_expenses_on_budget_id"
+    t.index ["category_id"], name: "index_expenses_on_category_id"
+    t.index ["user_id"], name: "index_expenses_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -22,4 +65,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_15_192731) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+  add_foreign_key "budget_allocations", "budgets"
+  add_foreign_key "budget_allocations", "categories"
+  add_foreign_key "budgets", "users"
+  add_foreign_key "categories", "budgets"
+  add_foreign_key "categories", "users"
+  add_foreign_key "expenses", "budgets"
+  add_foreign_key "expenses", "categories"
+  add_foreign_key "expenses", "users"
 end
