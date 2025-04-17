@@ -64,3 +64,7 @@ end
 
 gem "devise", "~> 4.9"
 gem "rspec"
+
+gem "factory_bot_rails"
+
+gem "byebug", "~> 12.0", :groups => [:development, :test]
