@@ -4,5 +4,5 @@ class User < ApplicationRecord
 
   has_many :budgets, dependent: :destroy
   has_many :categories, dependent: :destroy
-  has_many :expenses
+  has_many :expenses, dependent: :destroy
 end
