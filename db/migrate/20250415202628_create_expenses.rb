@@ -4,7 +4,7 @@ class CreateExpenses < ActiveRecord::Migration[8.0]
       t.references :budget, null: false, foreign_key: true
       t.references :category, null: false, foreign_key: true
       t.references :user, null: false, foreign_key: true
-      t.decimal :amount
+      t.string :amount
       t.string :description
       t.datetime :spent_at
 

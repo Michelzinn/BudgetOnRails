@@ -44,7 +44,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_15_202628) do
     t.integer "budget_id", null: false
     t.integer "category_id", null: false
     t.integer "user_id", null: false
-    t.decimal "amount"
+    t.string "amount"
     t.string "description"
     t.datetime "spent_at"
     t.datetime "created_at", null: false
