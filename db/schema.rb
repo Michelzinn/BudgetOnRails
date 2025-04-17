@@ -14,7 +14,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_15_202628) do
   create_table "budget_allocations", force: :cascade do |t|
     t.integer "budget_id", null: false
     t.integer "category_id", null: false
-    t.decimal "amount_allocated"
+    t.string "amount_allocated"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["budget_id"], name: "index_budget_allocations_on_budget_id"
