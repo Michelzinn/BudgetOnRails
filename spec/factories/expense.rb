@@ -3,7 +3,7 @@ FactoryBot.define do
   association :budget
   association :category
   association :user
-  amount { '123' }
+  amount_cents { 123 }
   description { "Expense" }
   spent_at { Time.zone.now }
   end

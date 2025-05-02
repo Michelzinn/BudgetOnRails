@@ -3,5 +3,5 @@ class Expense < ApplicationRecord
   belongs_to :budget
   belongs_to :category
 
-  validates :amount, numericality: { greater_than: 0 }
+  validates :amount_cents, numericality: { greater_than: 0 }
 end

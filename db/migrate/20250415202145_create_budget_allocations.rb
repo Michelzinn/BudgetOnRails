@@ -3,7 +3,7 @@ class CreateBudgetAllocations < ActiveRecord::Migration[8.0]
     create_table :budget_allocations do |t|
       t.references :budget, null: false, foreign_key: true
       t.references :category, null: false, foreign_key: true
-      t.string :amount_allocated
+      t.integer :amount_cents_allocated
 
       t.timestamps
     end

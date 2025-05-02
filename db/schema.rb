@@ -14,7 +14,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_15_202628) do
   create_table "budget_allocations", force: :cascade do |t|
     t.integer "budget_id", null: false
     t.integer "category_id", null: false
-    t.string "amount_allocated"
+    t.integer "amount_cents_allocated"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["budget_id"], name: "index_budget_allocations_on_budget_id"
@@ -23,7 +23,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_15_202628) do
 
   create_table "budgets", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.string "total_amount"
+    t.integer "total_amount_cents"
     t.date "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -44,7 +44,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_15_202628) do
     t.integer "budget_id", null: false
     t.integer "category_id", null: false
     t.integer "user_id", null: false
-    t.string "amount"
+    t.integer "amount_cents"
     t.string "description"
     t.datetime "spent_at"
     t.datetime "created_at", null: false
