@@ -68,5 +68,6 @@ gem "shoulda-matchers"
 
 gem "factory_bot_rails"
 gem "faker"
+gem "view_component"
 
 gem "byebug", "~> 12.0", groups: [ :development, :test ]
