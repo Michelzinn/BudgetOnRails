@@ -1,0 +1,61 @@
+<div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow">
+  <div class="card-body">
+    <h2 class="card-title">
+      <%= format_month_year(budget.date) %>
+    </h2>
+    
+    <div class="space-y-4">
+      <div>
+        <p class="text-sm opacity-60">Total Budget</p>
+        <p class="text-2xl font-bold"><%= format_money(budget.total_amount_cents) %></p>
+      </div>
+
+      <div class="stats stats-vertical lg:stats-horizontal shadow">
+        <div class="stat">
+          <div class="stat-title">Allocated</div>
+          <div class="stat-value text-lg <%= budget.percentage_allocated > 100 ? 'text-error' : (budget.percentage_allocated == 100 ? 'text-success' : 'text-warning') %>">
+            <%= format_money(budget.allocated_amount) %>
+          </div>
+          <div class="stat-desc"><%= budget.percentage_allocated %>% of total</div>
+        </div>
+        
+        <div class="stat">
+          <div class="stat-title">Spent</div>
+          <div class="stat-value text-lg">
+            <%= format_money(total_spent) %>
+          </div>
+          <div class="stat-desc"><%= spent_percentage %>% of total</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="flex justify-between text-sm mb-2">
+          <span>Spending progress</span>
+          <span class="font-medium"><%= spent_percentage %>%</span>
+        </div>
+        <progress class="progress progress-primary w-full" 
+                  value="<%= [spent_percentage, 100].min %>" 
+                  max="100">
+        </progress>
+      </div>
+
+      <% if budget.categories.any? %>
+        <div class="pt-2">
+          <p class="text-sm">
+            <span class="font-medium">Categories:</span> <%= categories_summary %>
+            <% if budget.categories.count > 3 %>
+              <span class="opacity-60">and <%= budget.categories.count - 3 %> more</span>
+            <% end %>
+          </p>
+        </div>
+      <% end %>
+    </div>
+    
+    <div class="card-actions justify-end mt-4">
+      <%= link_to budget_path(budget), class: "btn btn-primary btn-sm" do %>
+        View Details
+        <i class="las la-arrow-right text-base ml-1"></i>
+      <% end %>
+    </div>
+  </div>
+</div>
