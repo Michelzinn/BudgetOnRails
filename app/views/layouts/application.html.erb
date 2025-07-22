@@ -19,10 +19,40 @@
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.19/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
+    <% if user_signed_in? %>
+      <div class="navbar bg-base-100 shadow-lg">
+        <div class="navbar-start">
+          <%= link_to "BudgetOnRails", root_path, class: "btn btn-ghost text-xl" %>
+        </div>
+        <div class="navbar-end">
+          <span class="text-base-content mr-4"><%= current_user.email %></span>
+          <%= button_to "Logout", destroy_user_session_path, method: :delete, 
+                        class: "btn btn-ghost btn-sm" %>
+        </div>
+      </div>
+    <% end %>
+    
+    <% if notice.present? %>
+      <div class="alert alert-success">
+        <i class="las la-check-circle text-2xl"></i>
+        <span><%= notice %></span>
+      </div>
+    <% end %>
+    
+    <% if alert.present? %>
+      <div class="alert alert-error">
+        <i class="las la-times-circle text-2xl"></i>
+        <span><%= alert %></span>
+      </div>
+    <% end %>
+    
     <%= yield %>
   </body>
 </html>
