@@ -1,0 +1,57 @@
+<div class="card bg-base-100 shadow-xl">
+  <div class="card-body">
+    <h2 class="card-title">Expense Summary by Category</h2>
+    <div class="overflow-x-auto">
+      <table class="table table-zebra">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th class="text-right">Budget</th>
+            <th class="text-right">Total Spent</th>
+            <th class="text-right">Remaining</th>
+            <th class="text-center">% Used</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% categories.each do |category| %>
+            <tr>
+              <td class="font-medium"><%= category.name %></td>
+              <td class="text-right"><%= format_money(category.allocation_amount) %></td>
+              <td class="text-right"><%= format_money(category.total_expenses) %></td>
+              <td class="text-right">
+                <span class="<%= category.remaining_allocation < 0 ? 'text-error font-bold' : '' %>">
+                  <%= format_money(category.remaining_allocation) %>
+                </span>
+              </td>
+              <td>
+                <div class="flex items-center gap-2">
+                  <progress class="progress <%= category.percentage_used > 100 ? 'progress-error' : (category.percentage_used >= 75 ? 'progress-warning' : 'progress-success') %> w-full" 
+                           value="<%= [category.percentage_used, 100].min %>" 
+                           max="100">
+                  </progress>
+                  <span class="text-xs font-medium w-12"><%= category.percentage_used.round %>%</span>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+        <tfoot>
+          <tr class="font-bold">
+            <td>Total</td>
+            <td class="text-right"><%= format_money(total_allocated) %></td>
+            <td class="text-right"><%= format_money(total_spent) %></td>
+            <td class="text-right">
+              <span class="<%= total_remaining < 0 ? 'text-error' : '' %>">
+                <%= format_money(total_remaining) %>
+              </span>
+            </td>
+            <td class="text-center">
+              <% percentage = total_allocated.zero? ? 0 : (total_spent.to_f / total_allocated * 100).round %>
+              <%= percentage %>%
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>
