@@ -1,24 +1,3 @@
-# README
+WIP
+* <img width="1902" height="922" alt="image" src="https://github.com/user-attachments/assets/03005977-a83c-4c1a-9c2d-7c44c2f0c58f" />
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
