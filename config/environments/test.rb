@@ -51,11 +51,5 @@ Rails.application.configure do
   # Raise error when a before_action's only/except options reference missing actions.
   config.action_controller.raise_on_missing_callback_actions = true
 
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-
-  RSpec.configure do |config|
-    FactoryBot.definition_file_paths = %w[spec/factories]
-
-    config.include FactoryBot::Syntax::Methods
-  end
+  config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
 end
