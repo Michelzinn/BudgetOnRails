@@ -63,8 +63,10 @@ group :test do
 end
 
 gem "devise", "~> 4.9"
-gem "rspec"
+gem "rspec-rails"
+gem "shoulda-matchers"
 
 gem "factory_bot_rails"
+gem "faker"
 
-gem "byebug", "~> 12.0", :groups => [:development, :test]
+gem "byebug", "~> 12.0", groups: [ :development, :test ]
