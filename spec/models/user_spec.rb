@@ -16,7 +16,7 @@ RSpec.describe User, type: :model do
         expect { user.destroy }.to change { Category.count }.by(-1)
       end
 
-      it 'destroys associated categories when user is destroyed' do
+      it 'destroys associated expenses when user is destroyed' do
         expect { user.destroy }.to change { Expense.count }.by(-1)
       end
     end
